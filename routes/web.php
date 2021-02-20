@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 //adicionando o controller
 use App\Http\Controllers\Admin\TesteController;
+use App\Http\Controllers\ProductController;
 use function PHPUnit\Framework\isNull;
 
 /*
@@ -15,13 +16,31 @@ use function PHPUnit\Framework\isNull;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+Route::put('products/update/{id}', [ProductController::class, 'update'])->name('products.update');
+
+Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+Route::get('/', function(){
+    return 'Raiz';
+});
+
+/*
+
+
 
 Route::get('/login', function(){
     return 'Login';
 })->name('login');
 
 
-/**
+
 Route::get('/admin/dashboard', function(){
     return "Home Admin";
 })->middleware('auth');
@@ -56,9 +75,11 @@ Route::middleware([''])->group(function(){
             
     });
 
-    
+  */
+  
+  /*
 
-    */
+
 
     //aplicando middlewware, prefix e namespace para um grupo
 
@@ -69,11 +90,15 @@ Route::middleware([''])->group(function(){
     ], function(){
         Route::get('/recursoshumanos', [TesteController::class,'teste'])->name('rh');
         Route::get('/controladoria', [TesteController::class,'teste'])->name('controladoria');
-        Route::get('/produtos', [TesteController::class,'teste'])->name('produtos');
+        Route::get('/produtos', 'ProductController@index')->name('produtos');
         
     }
 );
 
+*/
+
+
+/*
     //rota com middleware, prefixo, usando o namespace e controller
 Route::middleware([])->group(function(){
     Route::prefix('admin')->group(function(){
@@ -95,6 +120,8 @@ Route::match(['post', 'get'], '/match', function(){
     return ('Match');
 });
 
+*/
+
 //rota pra uma view direta
 Route::view('/view','site.welcome');
 //redirecionando as rotas
@@ -103,6 +130,8 @@ Route::view('/view','site.welcome');
     return redirect('/redirect2');
 });*/
 
+
+/*
 //segunda forma de fazer um redirect
 Route::redirect('redirect1','redirect2');
 Route::get('/redirect2', function () {
@@ -137,3 +166,10 @@ Route::get('/teste', function(){
 Route::get( '/contato', function(){
     return view('contato');
 });
+
+//Route::get('/products', 'ProductController@index')->name('products.index');
+
+Route::get('/products', function(){
+    return 'products';
+});
+*/
