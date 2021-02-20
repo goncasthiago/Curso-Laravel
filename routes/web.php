@@ -16,6 +16,10 @@ use function PHPUnit\Framework\isNull;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+/*
+//Rotas criadas para o CRUD
 Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 Route::put('products/update/{id}', [ProductController::class, 'update'])->name('products.update');
@@ -27,9 +31,17 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
+
+*/
+
 Route::get('/', function(){
     return 'Raiz';
 });
+
+
+
+//Criandos rotas atraves de um resource
+Route::resource('products', ProductController::class);
 
 /*
 
@@ -122,8 +134,7 @@ Route::match(['post', 'get'], '/match', function(){
 
 */
 
-//rota pra uma view direta
-Route::view('/view','site.welcome');
+
 //redirecionando as rotas
 //primeira forma de fazer um redirect
 /* Route::get('redirect1', function(){
